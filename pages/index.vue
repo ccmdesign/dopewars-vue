@@ -1,27 +1,42 @@
 <template>
   <div class="container">
     <aside>
-      <pre>{{ player }}</pre>
+      <div>Wallet {{player.wallet}}</div>
+      <div>Bank {{player.bank}}</div>
       <div>
-        <button @click="addWallet(10)">Wallet + 10</button>
-        <button @click="subtractWallet(10)">Wallet - 10</button>
+        <input type="text" v-model=wallet_temp>
+        <button @click="transferToBank(wallet_temp)">Send to Bank</button>
+        <button @click="transferToWallet(wallet_temp)">Send to Wallet</button>
       </div>
-      <div>
-        <button @click="addBank(10)">Bank + 10</button>
-        <button @click="subtractBank(10)">Bank - 10</button>
-      </div>
+      <ul>
+        <li>Apples - {{player.stash.apples}} - <button>Sell</button></li>
+        <li>Bananas - {{player.stash.bananas}} - <button>Sell</button></li>
+        <li>Oranges - {{player.stash.oranges}} - <button>Sell</button></li>
+      </ul>
     </aside>
-    
-    
     <div>
       <ul>
         <h2>Items</h2>
-        <li v-for="i in items" :key="i.name">{{i.name}}</li>
+        <li>
+          <span>{{items[0].name}}</span>
+          <span>{{items[0].price}}</span>
+          <input type="text" v-model=apples_temp>
+          <button>Buy</button>
+        </li>
+        <li>
+          <span>{{items[1].name}}</span>
+          <span>{{items[1].price}}</span>
+          <input type="text" v-model=bananas_temp>
+          <button>Buy</button>
+        </li>
+        <li>
+          <span>{{items[2].name}}</span>
+          <span>{{items[2].price}}</span>
+          <input type="text" v-model=oranges_temp>
+          <button>Buy</button>
+        </li>
       </ul>
-      <ul>
-        <h2>Areas</h2>
-        <li v-for="i in areas" :key="i.name">{{i.name}}</li>
-      </ul>
+      
     </div>
   </div>
 </template>
@@ -30,6 +45,14 @@
 import { mapMutations } from 'vuex'
 
 export default {
+  data() {
+    return {
+      "wallet_temp": 0,
+      "apples_temp": 0,
+      "bananas_temp": 0,
+      "oranges_temp": 0,
+    }
+  },
   computed: {
     player() {
       return this.$store.state.player
@@ -42,6 +65,27 @@ export default {
     },
   },
   methods: {
+    transferToBank(n) {
+      if (this.player.wallet >= n ) {
+        this.$store.commit('subtractWallet', n);
+        this.$store.commit('addBank', n);
+      } else {
+        // We should throw an error here and show a better message to the user
+        alert("Not enough cash")
+        this.wallet_temp = this.player.wallet
+      }
+    },
+    transferToWallet(n) {
+      if (this.player.bank >= n ) {
+        this.$store.commit('addWallet', n);
+        this.$store.commit('subtractBank', n);
+      } else {
+        // We should throw an error here and show a better message to the user
+        alert("Not enough cash")
+        this.wallet_temp = this.player.bank
+      }
+    },
+
     addWallet(n) {
       this.$store.commit('addWallet', n);
     },

@@ -19,23 +19,36 @@ export const state = () => ({
       { "name": "downtown" },
     ],
     "items": [
-      { "name": "apples" },
-      { "name": "bananas" },
-      { "name": "oranges" },
+      { 
+        "name": "apples",
+        "price": 10
+      },
+      { 
+        "name": "bananas",
+        "price": 5
+      },
+      { 
+        "name": "oranges",
+        "price": 7
+      },
     ]
 });
 
 export const mutations = {
   addWallet(state, n) {
+    n = parseInt(n);
     state.player.wallet = state.player.wallet + n;
   },
   subtractWallet(state, n) {
+    n = parseInt(n);
     state.player.wallet = state.player.wallet - n;
   },
   addBank(state, n) {
+    n = parseInt(n);
     state.player.bank = state.player.bank + n;
   },
   subtractBank(state, n) {
+    n = parseInt(n);
     state.player.bank = state.player.bank - n;
   }
 }
