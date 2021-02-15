@@ -35,20 +35,51 @@ export const state = () => ({
 });
 
 export const mutations = {
-  addWallet(state, n) {
-    n = parseInt(n);
-    state.player.wallet = state.player.wallet + n;
+  transferToBank(state, n) {
+    if (state.player.wallet >= n ) {
+      n = parseInt(n);
+      state.player.wallet -= n;
+      state.player.bank += n;
+    } else {
+      // We should throw an error here and show a better message to the user
+      alert("Not enough cash")
+    }
   },
-  subtractWallet(state, n) {
-    n = parseInt(n);
-    state.player.wallet = state.player.wallet - n;
+  transferToWallet(state, n) {
+    if (state.player.bank >= n ) {
+      n = parseInt(n);
+      state.player.wallet += n;
+      state.player.bank -= n;
+    } else {
+      // We should throw an error here and show a better message to the user
+      alert("Not enough cash")
+    }
   },
-  addBank(state, n) {
-    n = parseInt(n);
-    state.player.bank = state.player.bank + n;
+  
+  buyAsset(state, payload) {
+    var n = parseInt(payload.n);
+    var p = parseInt(payload.price);
+    var amount = n * p;
+    
+    if (state.player.wallet >= amount) {
+      state.player.stash[payload.asset] += n;
+      state.player.wallet -= amount;
+    } else {
+      alert('Not enough cash');
+    }
+    
   },
-  subtractBank(state, n) {
-    n = parseInt(n);
-    state.player.bank = state.player.bank - n;
+  sellAsset(state, payload) {
+    var n = parseInt(payload.n);
+    var p = parseInt(payload.price);
+    var amount = n * p;
+
+    if (state.player.stash[payload.asset] >= n) {
+      state.player.stash[payload.asset] -= n;
+      state.player.wallet += amount;
+    } else {
+      alert('Not enough items');
+    }
   }
+
 }

@@ -1,56 +1,39 @@
 <template>
   <div class="container">
-    <aside>
-      <div>Wallet {{player.wallet}}</div>
-      <div>Bank {{player.bank}}</div>
-      <div>
-        <input type="text" v-model=wallet_temp>
-        <button @click="transferToBank(wallet_temp)">Send to Bank</button>
-        <button @click="transferToWallet(wallet_temp)">Send to Wallet</button>
+    <div class="main">
+      <player-profile />
+
+      <div class="areas margin-top:auto">
+        <areas-navigation />
       </div>
-      <ul>
-        <li>Apples - {{player.stash.apples}} - <button>Sell</button></li>
-        <li>Bananas - {{player.stash.bananas}} - <button>Sell</button></li>
-        <li>Oranges - {{player.stash.oranges}} - <button>Sell</button></li>
-      </ul>
-    </aside>
-    <div>
-      <ul>
-        <h2>Items</h2>
-        <li>
-          <span>{{items[0].name}}</span>
-          <span>{{items[0].price}}</span>
-          <input type="text" v-model=apples_temp>
-          <button>Buy</button>
-        </li>
-        <li>
-          <span>{{items[1].name}}</span>
-          <span>{{items[1].price}}</span>
-          <input type="text" v-model=bananas_temp>
-          <button>Buy</button>
-        </li>
-        <li>
-          <span>{{items[2].name}}</span>
-          <span>{{items[2].price}}</span>
-          <input type="text" v-model=oranges_temp>
-          <button>Buy</button>
-        </li>
-      </ul>
-      
     </div>
+
+    <div class="main">
+      <stash-panel />
+      <areas-panel />
+    </div>
+
+    
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import playerProfile from '@/components/playerProfile'
+import areasNavigation from '@/components/areasNavigation'
+import stashPanel from '@/components/stashPanel'
 
 export default {
+  components: {
+    playerProfile,
+    areasNavigation,
+    stashPanel
+  },
   data() {
     return {
-      "wallet_temp": 0,
-      "apples_temp": 0,
-      "bananas_temp": 0,
-      "oranges_temp": 0,
+      "buy_0": 0,
+      "buy_1": 0,
+      "buy_2": 0,
     }
   },
   computed: {
@@ -65,56 +48,87 @@ export default {
     },
   },
   methods: {
-    transferToBank(n) {
-      if (this.player.wallet >= n ) {
-        this.$store.commit('subtractWallet', n);
-        this.$store.commit('addBank', n);
-      } else {
-        // We should throw an error here and show a better message to the user
-        alert("Not enough cash")
-        this.wallet_temp = this.player.wallet
-      }
+    deposit(n) {
+      this.$store.commit('transferToBank', n);
     },
-    transferToWallet(n) {
-      if (this.player.bank >= n ) {
-        this.$store.commit('addWallet', n);
-        this.$store.commit('subtractBank', n);
-      } else {
-        // We should throw an error here and show a better message to the user
-        alert("Not enough cash")
-        this.wallet_temp = this.player.bank
-      }
+    withdraw(n) {
+      this.$store.commit('transferToWallet', n);
     },
 
-    addWallet(n) {
-      this.$store.commit('addWallet', n);
+    buyItem(asset, price, n) {
+      this.$store.commit('buyAsset', {
+        asset: asset,
+        price: price,
+        n: n
+      });
     },
-    subtractWallet(n) {
-      this.$store.commit('subtractWallet', n);
+
+    sellItem(asset, price, n) {
+      this.$store.commit('sellAsset', {
+        asset: asset,
+        price: price,
+        n: n
+      });
     },
-    addBank(n) {
-      this.$store.commit('addBank', n);
-    },
-    subtractBank(n) {
-      this.$store.commit('subtractBank', n);
-    },
+
     ...mapMutations({
-      addWallet: 'addWallet',
-      subtractWallet: 'subtractWallet',
-      addBank: 'addBank',
-      subtractBank: 'subtractBank',
+      buyAsset: 'buyAsset',
+      sellAsset: 'sellAsset',
+      transferToBank: 'transferToBank',
+      tarnsferToWallet: 'tarnsferToWallet',
     })
   }
 }
 
-
 </script>
 
 <style>
+body {
+  font-size: 24px;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
+  max-width: 1000px;
+}
+
+.main {
   display: flex;
+}
+
+
+button + button {
+  margin-left: 1rem;
+}
+.main > * + * {
+  margin-left: 2rem;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  width: 150px;
+  padding: .5rem;
+  vertical-align: baseline;
+  border-bottom: 1px solid #000;
+}
+
+td > input {
+  text-align: right;
+  width: 60px;
+  padding: .5rem;
+  font-size: 24px;
+}
+
+td > button {
+  margin-left: .5rem;
 }
 
 .container > pre {
@@ -122,33 +136,15 @@ export default {
   text-align: left;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.text-align\:right {
+  text-align: right;
+}
+.margin-top\:auto {
+  margin-top:auto;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+button {
+  padding: .75rem .6rem .5rem;
+  font-size: 20px;
 }
 </style>
