@@ -1,6 +1,9 @@
 <template>
   <nav>
-    <button v-for="area in areas" :key="area.name">{{area.name}}</button>
+    <li v-for="area in areas" :key="area.name" >
+      <input :id=area.name @change="changeArea(current)" type="radio" v-model="current" :value="area.name" />
+      <label :for=area.name >{{area.name}}</label>
+    </li>
   </nav>
 </template>
 
@@ -10,7 +13,7 @@
   export default {
     data() {
       return {
-        "wallet_temp": 0,
+        current: ''
       }
     },
     computed: {
@@ -25,14 +28,37 @@
       },
     },
     methods: {
+      changeArea(current) {
+        this.$emit('change_area', current);
+        this.$store.commit('changeArea', {
+          area: current,
+        });
+      },
       ...mapMutations({
-        transferToBank: 'transferToBank',
-        tarnsferToWallet: 'tarnsferToWallet',
       })
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+  input:checked + label {
+    background-color: black;
+    color: white;
+  }
 
+  nav {
+    display: flex;
+  }
+
+  label {
+    padding: .5rem 1rem;
+  }
+
+  input {
+    display: none;
+  }
+
+  li {
+    list-style: none;
+  }
 </style>

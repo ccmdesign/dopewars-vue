@@ -12,8 +12,6 @@
       <stash-panel />
       <areas-panel />
     </div>
-
-    
   </div>
 </template>
 
@@ -31,9 +29,6 @@ export default {
   },
   data() {
     return {
-      "buy_0": 0,
-      "buy_1": 0,
-      "buy_2": 0,
     }
   },
   computed: {
@@ -47,37 +42,8 @@ export default {
       return this.$store.state.items
     },
   },
-  methods: {
-    deposit(n) {
-      this.$store.commit('transferToBank', n);
-    },
-    withdraw(n) {
-      this.$store.commit('transferToWallet', n);
-    },
-
-    buyItem(asset, price, n) {
-      this.$store.commit('buyAsset', {
-        asset: asset,
-        price: price,
-        n: n
-      });
-    },
-
-    sellItem(asset, price, n) {
-      this.$store.commit('sellAsset', {
-        asset: asset,
-        price: price,
-        n: n
-      });
-    },
-
-    ...mapMutations({
-      buyAsset: 'buyAsset',
-      sellAsset: 'sellAsset',
-      transferToBank: 'transferToBank',
-      tarnsferToWallet: 'tarnsferToWallet',
-    })
-  }
+  
+    
 }
 
 </script>

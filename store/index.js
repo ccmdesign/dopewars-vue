@@ -7,6 +7,23 @@ export const state = () => ({
     "player": {
       "wallet": 1000,
       "bank": 0,
+      "currentArea": {
+        'name': '',
+        'items': [
+          { 
+            "name": "apples",
+            "price": 0,
+          },
+          { 
+            "name": "bananas",
+            "price": 0,
+          },
+          { 
+            "name": "oranges",
+            "price": 0,
+          },
+        ]
+      },
       "stash": {
         "apples": 0,
         "bananas": 0,
@@ -14,24 +31,30 @@ export const state = () => ({
       },
     },
     "areas": [
-      { "name": "kits" },
+      { 
+        "name": "kits"
+      },
       { "name": "west end" },
       { "name": "downtown" },
     ],
     "items": [
       { 
         "name": "apples",
-        "price": 10
+        "priceMax": 10,
+        "priceMin": 5
       },
       { 
         "name": "bananas",
-        "price": 5
+        "priceMax": 5,
+        "priceMin": 1
       },
       { 
         "name": "oranges",
-        "price": 7
+        "priceMax": 16,
+        "priceMin": 8
       },
-    ]
+    ],
+    
 });
 
 export const mutations = {
@@ -55,7 +78,6 @@ export const mutations = {
       alert("Not enough cash")
     }
   },
-  
   buyAsset(state, payload) {
     var n = parseInt(payload.n);
     var p = parseInt(payload.price);
@@ -67,7 +89,6 @@ export const mutations = {
     } else {
       alert('Not enough cash');
     }
-    
   },
   sellAsset(state, payload) {
     var n = parseInt(payload.n);
@@ -80,6 +101,10 @@ export const mutations = {
     } else {
       alert('Not enough items');
     }
-  }
+  },
+  changeArea(state, payload) {
+    console.log(payload)
+    state.player.currentArea = payload.area;
+  },
 
 }
