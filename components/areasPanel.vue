@@ -8,27 +8,27 @@
         <td class="text-align:right">Quantity</td>
       </tr>
       <tr>
-        <td>{{items[0].name}}</td>
-        <td class="text-align:right" @change_area="calcPrice(items[0].priceMax, items[0].priceMin)">{{ calcPrice(items[0].priceMax, items[0].priceMin) }}</td>
+        <td>{{player.currentArea.items[0].name}}</td>
+        <td class="text-align:right">{{player.currentArea.items[0].price}}</td>
         <td>
-          <input type="text" v-model=buy_0>
-          <button @click="buyItem(items[0].name, items[0].price, buy_0)">Buy</button>
+          <input type="text" v-model=askList[0].buy />
+          <button @click="buyItem(player.currentArea.items[0].name, player.currentArea.items[0].price, askList[0].buy)">Buy</button>
         </td>
       </tr>
       <tr>
-        <td>{{items[1].name}}</td>
-        <td class="text-align:right" @change_area="calcPrice(items[1].priceMax, items[1].priceMin)">{{ calcPrice(items[1].priceMax, items[1].priceMin) }}</td>
+        <td>{{player.currentArea.items[1].name}}</td>
+        <td class="text-align:right">{{player.currentArea.items[1].price}}</td>
         <td>
-          <input type="text" v-model=buy_1>
-          <button @click="buyItem(items[1].name, items[1].price, buy_1)">Buy</button>
+          <input type="text" v-model=askList[1].buy />
+          <button @click="buyItem(player.currentArea.items[1].name, player.currentArea.items[1].price, askList[1].buy)">Buy</button>
         </td>
       </tr>
       <tr>
-        <td>{{items[2].name}}</td>
-        <td class="text-align:right" @change_area="calcPrice(items[2].priceMax, items[2].priceMin)">{{ calcPrice(items[2].priceMax, items[2].priceMin) }}</td>
+        <td>{{player.currentArea.items[2].name}}</td>
+        <td class="text-align:right">{{player.currentArea.items[2].price}}</td>
         <td>
-          <input type="text" v-model=buy_2>
-          <button @click="buyItem(items[2].name, items[2].price, buy_2)">Buy</button>
+          <input type="text" v-model=askList[2].buy />
+          <button @click="buyItem(player.currentArea.items[2].name, player.currentArea.items[2].price, askList[2].buy)">Buy</button>
         </td>
       </tr>
     </table>
@@ -41,9 +41,11 @@
   export default {
     data() {
       return {
-        "buy_0": 0,
-        "buy_1": 0,
-        "buy_2": 0,
+        askList: [
+          {"buy": 0},
+          {"buy": 0},
+          {"buy": 0},
+        ]
       }
     },
     computed: {
@@ -58,17 +60,13 @@
       },
     },
     methods: {
-      calcPrice(name, max, min) {
-        var x = Math.floor(Math.random() * (max - min) + min);
-        return x;
-      },
-
       buyItem(asset, price, n) {
         this.$store.commit('buyAsset', {
           asset: asset,
           price: price,
           n: n
         });
+        n = 0;
       },
 
       ...mapMutations({

@@ -8,19 +8,19 @@ export const state = () => ({
       "wallet": 1000,
       "bank": 0,
       "currentArea": {
-        'name': '',
+        'name': 'kits',
         'items': [
           { 
             "name": "apples",
-            "price": 0,
+            "price": 0
           },
           { 
             "name": "bananas",
-            "price": 0,
+            "price": 0
           },
           { 
             "name": "oranges",
-            "price": 0,
+            "price": 0
           },
         ]
       },
@@ -54,10 +54,13 @@ export const state = () => ({
         "priceMin": 8
       },
     ],
-    
 });
 
 export const mutations = {
+  changeArea(state, payload) {
+    state.player.currentArea.name = payload.name;
+    state.player.currentArea.items = payload.items;
+  },
   transferToBank(state, n) {
     if (state.player.wallet >= n ) {
       n = parseInt(n);
@@ -102,9 +105,6 @@ export const mutations = {
       alert('Not enough items');
     }
   },
-  changeArea(state, payload) {
-    console.log(payload)
-    state.player.currentArea = payload.area;
-  },
+
 
 }

@@ -4,23 +4,32 @@
     <table>
       <tr>
         <td>Items</td>
-        <td class="text-align:right">Price</td>
+        <td class="text-align:right">Items</td>
         <td class="text-align:right">Quantity</td>
       </tr>
       <tr>
         <td>Apples</td>
-        <td class="text-align:right">{{player.stash.apples}}</td>
-        <td><input type="text" v-model=sell_0><button @click="sellItem(items[0].name, items[0].price, sell_0)">Sell</button></td>
+        <td class="text-align:right">{{player.stash.apples}}</td>        
+        <td>
+          <input type="text" v-model=askList[0].sell />
+          <button @click="sellItem(player.currentArea.items[0].name, player.currentArea.items[0].price, askList[0].sell)">Sell</button>
+        </td>
       </tr>
       <tr>
         <td>Bananas</td>
-        <td class="text-align:right">{{player.stash.bananas}}</td>
-        <td><input type="text" v-model=sell_1><button @click="sellItem(items[1].name, items[1].price, sell_1)">Sell</button></td>
+        <td class="text-align:right">{{player.stash.bananas}}</td>        
+        <td>
+          <input type="text" v-model=askList[1].sell />
+          <button @click="sellItem(player.currentArea.items[1].name, player.currentArea.items[1].price, askList[1].sell)">Sell</button>
+        </td>
       </tr>
       <tr>
         <td>Oranges</td>
-        <td class="text-align:right">{{player.stash.oranges}}</td>
-        <td><input type="text" v-model=sell_2><button @click="sellItem(items[2].name, items[2].price, sell_2)">Sell</button></td>
+        <td class="text-align:right">{{player.stash.oranges}}</td>        
+        <td>
+          <input type="text" v-model=askList[2].sell />
+          <button @click="sellItem(player.currentArea.items[2].name, player.currentArea.items[2].price, askList[2].sell)">Sell</button>
+        </td>
       </tr>
     </table>
   </aside>
@@ -32,9 +41,11 @@
   export default {
     data() {
       return {
-        "sell_0": 0,
-        "sell_1": 0,
-        "sell_2": 0,
+        askList: [
+          {"sell": 0},
+          {"sell": 0},
+          {"sell": 0},
+        ]
       }
     },
     computed: {
