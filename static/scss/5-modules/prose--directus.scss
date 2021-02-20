@@ -1,0 +1,10 @@
+/*
+This hides the low resolution image from Directus API.
+
+These are all the classes that come from directus' images.
+.cn.hv.t.u.v.hw.aj.ci.hx.hy
+In a quick test, if we keep only the '.cn' it will work.
+*/
+
+
+.cn { display: none; }

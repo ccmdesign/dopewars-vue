@@ -1,34 +1,20 @@
 <template>
-  <div>
-    <h2>Items</h2>
+  <div class="base-panel">
     <table>
       <tr>
         <td>Items</td>
         <td class="text-align:right">Price</td>
         <td class="text-align:right">Quantity</td>
       </tr>
-      <tr>
-        <td>{{player.currentArea.items[0].name}}</td>
-        <td class="text-align:right">{{player.currentArea.items[0].price}}</td>
+      <tr v-for="(item, index) in player.currentArea.items" :key="item.name">
+        <td class="all">{{item.name}}</td>
+        <td class="text-align:right">{{item.price}}</td>
         <td>
-          <input type="text" v-model=askList[0].buy />
-          <button @click="buyItem(player.currentArea.items[0].name, player.currentArea.items[0].price, askList[0].buy)">Buy</button>
-        </td>
-      </tr>
-      <tr>
-        <td>{{player.currentArea.items[1].name}}</td>
-        <td class="text-align:right">{{player.currentArea.items[1].price}}</td>
-        <td>
-          <input type="text" v-model=askList[1].buy />
-          <button @click="buyItem(player.currentArea.items[1].name, player.currentArea.items[1].price, askList[1].buy)">Buy</button>
-        </td>
-      </tr>
-      <tr>
-        <td>{{player.currentArea.items[2].name}}</td>
-        <td class="text-align:right">{{player.currentArea.items[2].price}}</td>
-        <td>
-          <input type="text" v-model=askList[2].buy />
-          <button @click="buyItem(player.currentArea.items[2].name, player.currentArea.items[2].price, askList[2].buy)">Buy</button>
+          <div class="trade-button" data-inverted >
+            <input type="text" v-model=askList[index] />
+            <input type="submit" @click="buyItem(item.name, item.price, askList[index])" value="Buy" />
+          </div>
+          
         </td>
       </tr>
     </table>
@@ -41,11 +27,7 @@
   export default {
     data() {
       return {
-        askList: [
-          {"buy": 0},
-          {"buy": 0},
-          {"buy": 0},
-        ]
+        askList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }
     },
     computed: {

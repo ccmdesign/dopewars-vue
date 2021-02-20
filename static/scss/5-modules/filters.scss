@@ -1,0 +1,29 @@
+.filters {
+  padding-top: var(--s1);
+  padding-bottom: 0;
+}
+
+.filters__inner { text-align: center; }
+.filters__inner > li { display: inline-block; }
+
+.filter {
+  font-family: var(--display-font);
+  text-transform: uppercase;
+  padding: var(--s0) var(--s1);
+      border-color: transparent;
+  color: hsla(var(--white-hsl), .6);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.filter:hover {
+  background-color: hsla(var(--white-hsl), .1);
+}
+
+input[type="checkbox"] { display: none; }
+input:checked + .filter {
+  border-bottom: 6px solid var(--primary-color);
+  background-color: hsla(var(--white-hsl), .1);
+}
+
+.filters--accent-color { background-color: hsla(var(--accent-hsl), 1); }

@@ -1,0 +1,30 @@
+.site-credits {
+  --space: var(--s-1);
+  padding: var(--space);
+  background-color: hsla(0,0%,0%,.8);
+  display: flex;
+  font-size: 80%;
+  align-items: center;
+  
+  @media screen and (max-width: 35.98em) {
+    flex-direction: column;
+    padding-bottom: calc(var(--space) + var(--nav-height));
+    justify-content: center;
+    text-align: center;
+  }
+  
+  a { color: hsla(var(--white-hsl), .5); }
+}
+
+@media screen and (max-width: 35.98em) {
+  .site-credits > * + * { margin-top: var(--s-1); }
+}
+
+@media screen and (min-width: 36em) {
+  .site-credits > * + * { margin-left: var(--s0); }
+}
+
+.by-line { 
+  text-decoration: none;
+  @media screen and (min-width: 36em) { margin-left: auto; }
+}

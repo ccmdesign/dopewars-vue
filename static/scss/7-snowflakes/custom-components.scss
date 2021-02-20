@@ -1,0 +1,46 @@
+.base-panel {
+  padding: var(--s1);
+   > h2 { 
+    font-size: 130%; 
+    padding: 0;
+  }
+}
+
+.trade-button {
+  display: flex;
+  --comp-hsl: var(--white-hsl);
+  
+  input {
+    border: 1px solid hsla(var(--comp-hsl), .3);
+    padding-left: var(--s0);
+    padding-right: var(--s0);
+    background-color: hsla(var(--comp-hsl), .05);
+    color: hsla(var(--comp-hsl), 1);
+    font-size: 80%;
+  }
+
+  input[type="text"] { width: 10ch; }
+  > * { border-radius: 0;  }
+  > :not(:last-child) { border-right-width: 0; }
+  > :first-child { border-radius: 4px 0 0 4px; }
+  > :last-child { border-radius: 0 4px 4px 0; }
+}
+
+.trade-button[data-inverted] {
+  --comp-hsl: var(--base-hsl);
+}
+
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+  
+  td {
+    border: 0;
+    border-bottom: 1px solid hsla(var(--base-hsl), .2);
+  }
+
+}
+
+td.all {
+  width: 100%;
+}

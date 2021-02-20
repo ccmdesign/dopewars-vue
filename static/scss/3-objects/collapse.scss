@@ -1,0 +1,12 @@
+.collapse__trigger { cursor: pointer; }
+
+.collapse__content {
+    height: auto;
+    max-height: 4000px;
+    transition: max-height .3s;
+  }
+
+.collapse__content[hidden] {
+  max-height: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,75 @@
+:root {
+  --display-font: 'montserrat', sans-serif;
+  --body-font: 'montserrat', sans-serif;
+}
+
+html,
+body {
+  font-family: var(--body-font);
+  font-size: 1rem;
+  @media screen and (min-width: 40em) { font-size: 110%; }
+  line-height: var(--ratio);
+  font-variant-numeric: lining-nums;     /* high-level property          */
+  -moz-font-feature-settings: 'lnum';    /* low-level (old Firefox)      */
+  -webkit-font-feature-settings: 'lnum'; /* low-level (old Webkit)       */
+  font-feature-settings: 'lnum' on;      /* low-level (all new browsers) */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-family: var(--display-font); }
+
+h1 {
+  font-size: 300%;
+  line-height: 130%;
+}
+
+h2 {
+  font-size: 250%;
+  line-height: 130%;
+}
+
+h3 {
+  font-size: 200%;
+  line-height: 140%;
+}
+
+h4 {
+  font-size: 160%;
+  line-height: 150%;
+}
+
+h5 {
+  font-size: 120%;
+  line-height: 150%;
+  text-align: left;
+}
+
+h6 {
+  font-size: 100%;
+  text-align: left;
+  line-height: var(--ratio);
+}
+
+/* Styling basic lists that don't have a class on them */
+ul:not([class]), 
+ol:not([class]) { padding-left: 1rem; }
+
+/* Styling basic links that don't have a class on them */
+a:not([class]) { 
+  text-decoration: none; 
+  color: var(--accent-color);
+}
+
+a:not([class]):hover { text-decoration: underline; }
+
+mark {
+  background-color: hsla(var(--accent-hsl), .16);
+  margin-left: -2px;
+  padding-left: 2px;
+  margin-right: -2px;
+  padding-right: 2px;
+}

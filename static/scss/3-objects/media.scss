@@ -1,0 +1,34 @@
+/**
+ * Inspired by 
+ * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
+ * https://philipwalton.github.io/solved-by-flexbox/demos/media-object/
+ */
+
+.media { 
+  /* Use this variable to overwrite the system spacing; */
+  --space: var(--s1); 
+}
+
+.media {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  @supports (gap: 0) { 
+    /* browser supports gap */
+    gap: var(--space);   
+  }
+}
+
+.media__figure {
+  flex-grow: 0;
+  margin-right: var(--space);
+  @supports (gap: 0) { margin-right: 0; }
+}
+
+.media__body { 
+  flex-grow: 1; 
+  flex-basis: 40ch;
+  max-width: calc(100% - var(--space));
+}
+  

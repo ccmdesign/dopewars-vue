@@ -1,0 +1,34 @@
+/*
+========
+Switcher
+========
+
+<div class="switcher">
+  <div> <!-- intermediary wrapper -->
+    <div><!-- child element --></div>
+    <div><!-- another child element --></div>
+    <div><!-- etc --></div>
+  </div>
+</div>
+
+https://absolutely.every-layout.dev/layouts/switcher/#the-generator
+*/
+
+
+.switcher > * {
+  --space: var(--s1);
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc((var(--space) / 2) * -1);
+}
+
+.switcher > * > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--measure) - (100% - var(--space))) * 999);
+  margin: calc(var(--space) / 2);
+}
+
+.switcher > * > :nth-last-child(n+5),
+.switcher > * > :nth-last-child(n+5) ~ * {
+  flex-basis: 100%;
+}

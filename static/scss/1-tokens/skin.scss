@@ -1,0 +1,22 @@
+:root {
+  /* These are the base visual configurations */
+
+  /* Base Borders */
+  --base-border-width: 2px;
+  --base-border: var(--base-border-width) solid hsla(var(--base-hsl), 1);
+  --base-border-radius: 0;
+
+  /* Base Spacing */ 
+  --base-gap: var(--s1);
+  --base-padding: var(--s1);
+
+  /* Base Shadows */ 
+  --base-shadow: 2px 2px 8px hsla(var(--base-hsl), .15);
+
+
+  /* These are the main form configurations */
+  --form-hsl: var(--primary-hsl);
+  --form-text-hsl: var(--base-hsl);
+  --form-font-weight: 400;
+  --form-border-width: var(--base-border-width); /* This variable only accepts one value. ToDo: make it accept multiple values ex: 0px 0px 2px 0 */
+}

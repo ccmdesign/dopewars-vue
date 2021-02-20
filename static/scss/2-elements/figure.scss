@@ -1,0 +1,10 @@
+figure {
+  max-width: 100%;
+}
+
+figcaption { 
+  font-size: 80%; 
+  opacity: .7;
+}
+
+figcaption:not(:first-child) { margin-top: var(--s-2); }

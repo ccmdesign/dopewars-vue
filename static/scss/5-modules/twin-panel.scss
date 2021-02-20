@@ -1,0 +1,25 @@
+.twin-panel { 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (min-width: 960px) {
+    flex-direction: row;
+  }
+}
+
+.twin-panel > :last-child { 
+  margin-top: var(--base-padding);
+}
+
+@media screen and (min-width: 960px) {
+  .twin-panel > :last-child { 
+    margin-top: 0;
+    margin-left: var(--base-padding); 
+  }
+}
+
+.twin-panel [data-fraction="1"] { flex: 1; }
+.twin-panel [data-fraction="2"] { flex: 2; }
+.twin-panel [data-fraction="3"] { flex: 3; }
+.twin-panel [data-fraction="4"] { flex: 4; }

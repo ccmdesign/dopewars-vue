@@ -1,34 +1,22 @@
 <template>
-  <aside>
-    <h2>Stash</h2>
+  <aside class="base-panel">
     <table>
       <tr>
         <td>Items</td>
-        <td class="text-align:right">Items</td>
-        <td class="text-align:right">Quantity</td>
+        <td class="text-align:right w200">Quantity</td>
+        <td class="text-align:right"></td>
       </tr>
-      <tr>
-        <td>Apples</td>
-        <td class="text-align:right">{{player.stash.apples}}</td>        
+      <tr v-for="(item, index) in player.stash" :key="item.name">
+        <td class="all">{{item.name}}</td>
+        <td class="text-align:right">{{item.quantity}}</td>
         <td>
-          <input type="text" v-model=askList[0].sell />
-          <button @click="sellItem(player.currentArea.items[0].name, player.currentArea.items[0].price, askList[0].sell)">Sell</button>
+          <div class="trade-button">
+            <input type="text" v-model=askList[index] />
+            <input type="submit" @click="sellItem(item.name, player.currentArea.items[index].price, askList[index])" value="Sell" />
+          </div>
         </td>
-      </tr>
-      <tr>
-        <td>Bananas</td>
-        <td class="text-align:right">{{player.stash.bananas}}</td>        
         <td>
-          <input type="text" v-model=askList[1].sell />
-          <button @click="sellItem(player.currentArea.items[1].name, player.currentArea.items[1].price, askList[1].sell)">Sell</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Oranges</td>
-        <td class="text-align:right">{{player.stash.oranges}}</td>        
-        <td>
-          <input type="text" v-model=askList[2].sell />
-          <button @click="sellItem(player.currentArea.items[2].name, player.currentArea.items[2].price, askList[2].sell)">Sell</button>
+          
         </td>
       </tr>
     </table>
@@ -41,11 +29,7 @@
   export default {
     data() {
       return {
-        askList: [
-          {"sell": 0},
-          {"sell": 0},
-          {"sell": 0},
-        ]
+        askList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }
     },
     computed: {
@@ -75,6 +59,6 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 </style>

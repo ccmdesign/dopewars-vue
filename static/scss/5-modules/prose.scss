@@ -1,0 +1,145 @@
+.prose {
+  font-weight: 200;
+
+  h1 { font-weight: 100; }
+  h2, h3, h4, h5 { font-weight: 400; }
+  h1, h2, h3, h4, h5 { line-height: 1.15; }
+
+  h1 {
+    font-size: 1.802em;
+    font-weight: 200;
+  }
+
+  h2 {
+    font-size: 1.602em;
+    font-weight: 200;
+  }
+
+  h3 {
+    font-size: 1.424em;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: 1.266em;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: 1.125em;
+    font-weight: 600;
+  }
+}
+
+.prose .prose__header {
+  margin-bottom: var(--s3);
+
+  h3 { 
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsla(var(--base-hsl), .5);
+    font-size: 100%;
+  }
+  
+  h1 { 
+    margin-top: 0; 
+    font-size: 180%;
+    @media screen and (min-width: 40em) { font-size: 305%; }
+  }
+  h2 { 
+    font-size: 130%; 
+    margin-top: var(--s0);
+    color: var(--base-color);
+  }
+}
+
+/* Suggested Colors */
+.prose {
+  color: var(--base-color);
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  a:hover { text-decoration: underline; }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  h1 { color: var(--primary-color); }
+  h2 { color: var(--primary-color); }
+  h3 { color: var(--base-color); }
+  h4 { color: var(--base-color); }
+  h5, h6 { color: var(--base-color); }
+
+  h1 strong,
+  h2 strong,
+  h3 strong,
+  h4 strong,
+  h5 strong,
+  h6 strong { font-weight: inherit; }
+
+  hr { 
+    border-top-width: var(--form-border-width);
+    border-color: transparent;
+    border-top-color: hsla(var(--primary-hsl), .4);
+  }
+
+  pre {
+    background-color: hsla(var(--primary-hsl), .05);
+    padding: var(--s1);
+  }
+  
+  figcaption { 
+    font-size: 75%;
+    max-width: none;
+  }
+}
+
+/* Vertical rhythm */
+.prose {
+  * + * { margin-top: var(--s0); }
+
+/* Adds a smaller margin between the items of the same list or hgroup */
+  hgroup >  * + *,
+  ul > * + *,
+  ol > * + * { margin-top: var(--s-1); }
+
+  /* Adds generous spaces before and after the blockquote */
+  table:not([class]),
+  audio:not([class]),
+  video:not([class]),
+  embed:not([class]),
+  iframe:not([class]),
+  object:not([class]),
+  picture:not([class]),
+  canvas:not([class]),
+  figure,
+  blockquote:not([class]) { 
+    margin-top: var(--s2); 
+    margin-bottom: var(--s2);
+  }
+
+  h1, h2, h3, h4, h5 {
+    margin-bottom: var(--s0); 
+  }
+
+  /* Makes the higher heading not wrap on floated images */
+  h1, h2, h3 { clear: both; }
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child { margin-top: 0; }
+
+  h1, h2 { margin-top: var(--s2); }
+  h3, h4, h5 { margin-top: var(--s1); }
+
+  .prose__cover-image { margin-top: var(--s0); }
+}
+
+
+
+
+

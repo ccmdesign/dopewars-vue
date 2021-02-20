@@ -1,10 +1,9 @@
 <template>
-<div>
-  <h2>{{player.currentArea.name}}</h2>
+<div class="base-panel">
   <nav>
-    <li v-for="area in areas" :key="area.name" >
+    <li v-for="area in areas" :key="area.name">
       <input :id=area.name @change="changeArea(currentName)" type="radio" v-model="currentName" :value="area.name" />
-      <label :for=area.name >{{area.name}}</label>
+      <label :for=area.name class="nav-button">{{area.name}}</label>
     </li>
   </nav>
 </div>
@@ -42,12 +41,7 @@
         current.name = currentName;
         current.items = [];
         
-        // var area_list;
-
-        // for (var i = 0; i <= this.area.length; i++) {
-          
-        // }
-
+        
         for (var i = 0; i < this.items.length; i++) {
           var min = this.items[i].priceMin;
           var max = this.items[i].priceMax;
@@ -65,22 +59,36 @@
       },
       ...mapMutations({
       })
-    }
+    },
+    mounted () {
+      this.changeArea(this.player.currentArea.name);
+    },
   }
 </script>
 
 <style scoped>
   input:checked + label {
-    background-color: black;
-    color: white;
   }
+
+  .nav-button {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 120%;
+    padding: var(--s-2) var(--s0);
+    cursor: pointer;
+  }
+
+  .nav-button:hover {
+    border-bottom: 4px solid var(--accent-color);
+  }
+
 
   nav {
     display: flex;
+    gap: var(--s1);
   }
 
   label {
-    padding: .5rem 1rem;
   }
 
   input {

@@ -1,0 +1,22 @@
+/*
+====
+Grid
+====
+https://absolutely.every-layout.dev/layouts/grid/
+
+SASS min() function collides with css native min() function. 
+So we are using Min() to bypass the SASS function and avoid compilation errors. 
+
+*/
+
+
+.grid {
+  display: grid;
+  grid-gap: var(--base-gap, 1rem);
+}
+
+@supports (width: Min(250px, 100%)) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(Min(250px, 100%), 1fr));
+  }
+}

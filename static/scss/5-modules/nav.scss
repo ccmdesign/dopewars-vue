@@ -1,0 +1,84 @@
+
+/* 
+This is weird, but teh result is pretty insteresting.
+Once the height of the top-bar is set, this set up makes
+the buttons (<a> tags) fill all the available space, 
+and aligns the text both horizontally and vertically. 
+
+It seems like this is starting to become a best practice
+because there is a spec for "display: contents" that will 
+institutionalize this alignment tatic, by ignoring all 
+the intermediate "display: flex".
+
+It looks like it is better supported than I expected. 
+https://css-tricks.com/get-ready-for-display-contents/
+
+*/
+
+.nav { display: flex; }
+
+.nav__trigger {
+  display: none;
+  border-top: 1px solid hsla(var(--white-hsl),.2);
+  color: hsla(var(--white-hsl), .7);
+  padding: var(--s-1);
+}
+
+.nav__list,
+.nav__list li,
+.nav__list a { display: inherit; }
+
+.nav__list li { align-items: stretch; }
+.nav__list a { align-items: center; }
+
+.nav__list { flex-wrap: wrap; }
+
+.nav__list a { 
+  padding-left: var(--s0);
+  padding-right: var(--s0);
+  color: hsla(var(--white-hsl), .4);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.nav__list a:hover { 
+  background-color: hsla(var(--white-hsl), .05); 
+  text-decoration: none;
+}
+
+.nav__list a[data-state="active"] {
+  background-color: hsla(var(--white-hsl), .25);
+}
+
+@media (max-width: 35.98em) { 
+  /* positions the navigation at the bottom of the mobile screens */
+  .nav { 
+    flex-direction: column;
+    background-color: hsla(var(--base-hsl), 1); 
+    position: fixed;
+    z-index: 100;
+    /*bottom: 0;*/
+    width: 100vw;
+    bottom: calc(var(--nav-height)* -1);
+    transition: all .4s ease;
+  }
+
+  .nav.js-active { bottom: 0; }
+
+  .nav__trigger { display: block; }
+  .nav__list { 
+    flex-direction: column; 
+    flex-grow: 1;
+    background-color: hsla(var(--black-hsl), .25);
+  }
+
+  .nav__list li { justify-content: center; }
+  .nav__list a { 
+    padding: var(--s-1); 
+    flex: 1;
+    justify-content: center;
+  }
+
+
+
+}

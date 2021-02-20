@@ -1,0 +1,20 @@
+.top-bar {
+  --thickness: 42px;
+  height: var(--thickness);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: hsla(var(--base-hsl), .95);
+
+  @media (min-width: 36em) { 
+    justify-content: space-between; 
+  }
+}
+
+.top-bar__item {
+  
+}
+
+.top-bar__nav {
+  
+}

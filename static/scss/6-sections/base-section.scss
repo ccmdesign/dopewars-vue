@@ -1,0 +1,23 @@
+.base-section {
+  --color: currentColor;
+  --background: transparent;
+  padding-top: var(--s3);
+  padding-bottom: var(--s3);
+  background: var(--background);
+  color: var(--color);
+}
+
+.base-section--base-color-faded { 
+  --background: hsla(var(--base-hsl), .3); 
+  --color: var(--base-color);
+}
+
+.base-section__tagline {
+  font-weight: 200;
+  font-size: 130%;
+  letter-spacing: .4px;
+}
+
+.base-section__heading {
+  color: var(--base-color);
+}

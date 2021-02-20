@@ -1,0 +1,27 @@
+.footer,
+.footer .center {
+  --measure: 1100px;
+}
+
+.footer {
+  padding-top: var(--s4);
+  background-color: var(--base-color);
+  color: var(--white-color);
+  font-weight: 300;
+}
+
+.footer__heading {
+  font-size: 120%;
+  color: hsla(var(--white-hsl), .5);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.footer__wide { flex-grow: 2; }
+
+.footer__logos img { max-width: 40%; }
+
+@media screen and (min-width: 36em) {
+  .footer__logos img { max-width: 60%; }
+}
+

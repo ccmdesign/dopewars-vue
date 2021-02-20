@@ -1,0 +1,6 @@
+.prose--columns {
+  --cols: 2;
+  --gap: var(--s3);
+  column-gap: var(--gap);
+  @media screen and (min-width: 960px) { column-count: var(--cols); }
+}

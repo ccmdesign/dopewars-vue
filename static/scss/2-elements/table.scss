@@ -1,0 +1,20 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+/* Defines the base paddign and borders */
+th, td {
+  padding: var(--s-1);
+  border: 1px solid hsla(var(--base-hsl), .2);
+}
+
+/* 
+   Defines the basic alignment for the table 
+   Adds options for different data types to be shown in the cells
+   Essentially changing the text-alignment to make it easier to read
+*/
+th, td { text-align: left; }
+table .td-number { text-align: right; }
+table .td-icon { text-align: center; }
