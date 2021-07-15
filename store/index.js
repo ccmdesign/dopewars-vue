@@ -11,25 +11,15 @@ export const state = () => ({
       "interest": 1.02,
       "currentDay": 0,
       "maxDays": 30,
+      "specialEventChance": 20,
       "pockets": {
-        "capacity": 100,
+        "capacity": 200,
         "used": 0,
       },
       "currentArea": {
         'name': 'Detroit',
         'items': [
-          { 
-            "name": "Apples",
-            "price": 0
-          },
-          { 
-            "name": "Bananas",
-            "price": 0
-          },
-          { 
-            "name": "Oranges",
-            "price": 0
-          },
+          
         ]
       },
       "stash": [
@@ -108,6 +98,62 @@ export const state = () => ({
         "priceMin": 30
       },
     ],
+    "specialEvents": [
+      {
+        "name": "Apple Day",
+        "description": "Apples are cheap",
+        "asset": "Apples",
+        "variation": 0.3 
+      }, 
+      {
+        "name": "Orange Craze",
+        "description": "Orange prices are higher than usual",
+        "asset": "Oranges",
+        "variation": 2 
+      }, 
+      {
+        "name": "Banana Craze",
+        "description": "Banana prices are crazy high!",
+        "asset": "Bananas",
+        "variation": 4 
+      },
+      { 
+        "name": "Sumo Day",
+        "description": "Sumo prices are super low",
+        "asset": "Sumo",
+        "variation": 0.1 
+      },
+      { 
+        "name": "Strawberry Craze",
+        "description": "Strawberries are more expensive than usual",
+        "asset": "Strawberries",
+        "variation": 2 
+      },
+      { 
+        "name": "Blueberry Day",
+        "description": "Blueberries are crazy cheap!",
+        "asset": "Blueberries",
+        "variation": 0.3  
+      },
+      { 
+        "name": "Blueberry Craze",
+        "description": "Blueberries are expensive",
+        "asset": "Blueberries",
+        "variation": 3 
+      },
+      { 
+        "name": "Orange Craze",
+        "description": "Oranges are crazy expensive",
+        "asset": "Oranges",
+        "variation": 8 
+      },
+      { 
+        "name": "Orange Day",
+        "description": "Oranges are super cheap",
+        "asset": "Oranges",
+        "variation": 0.1 
+      }
+    ]
 });
 
 export const mutations = {

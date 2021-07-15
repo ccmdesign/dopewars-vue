@@ -29,6 +29,9 @@
       items() {
         return this.$store.state.items
       },
+      specialEvents() {
+        return this.$store.state.specialEvents
+      }
     },
     methods: {
       calcPrice(max, min) {
@@ -40,15 +43,33 @@
         const current = {};
         current.name = currentName;
         current.items = [];
+
+        // Rolls the Special Event chance
+        var eventChance = Math.floor(Math.random() * 100);
+
+        var priceMultiplier = 1;
+        var specialEvent = false;
         
-        
+        if (eventChance <= this.player.specialEventChance) {
+          var eventGenerator = Math.floor(Math.random() * this.specialEvents.length);
+          specialEvent = this.specialEvents[eventGenerator];
+        }
+
         for (var i = 0; i < this.items.length; i++) {
           var min = this.items[i].priceMin;
           var max = this.items[i].priceMax;
           var x = {};
           x.name = this.items[i].name;
-          x.price = Math.floor(Math.random() * (max - min) + min);
+
+          if (specialEvent.asset && this.items[i].name == specialEvent.asset) {
+            priceMultiplier = specialEvent.variation;
+            alert(specialEvent.name + '\n' + specialEvent.description);
+          } 
+          x.price = Math.floor((Math.random() * (max - min) + min) * priceMultiplier + 1);
+          x.priceMin = this.items[i].priceMin;
+          x.priceMax = this.items[i].priceMax;
           current.items.push(x);
+          priceMultiplier = 1;
         }
 
         this.$emit('change_area', current.name);
