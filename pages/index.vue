@@ -1,26 +1,33 @@
 <template>
-  <div class="grid">
-    <div class="grid_top-bar">
-      <top-bar />
+  <div>
+    
+    <div class="grid">
+      <div class="grid_top-bar">
+        <top-bar />
+      </div>
+      <div class="grid_profile">
+        <player-profile />  
+      </div>
+      <div class="grid_header">
+          <div>
+            <event-panel />
+            <area-header />
+          </div>
+      </div>
+      <div class="grid_pockets">
+        <pockets-panel />
+      </div>
+      <div class="grid_navigation">
+        <areas-navigation />
+      </div>
+      <div class="grid_stash">
+        <stash-panel />
+      </div>
+      <div class="grid_areas">
+        <areas-panel />
+      </div>
     </div>
-    <div class="grid_profile">
-      <player-profile />  
-    </div>
-    <div class="grid_header">
-      <area-header />
-    </div>
-    <div class="grid_pockets">
-      <pockets-panel />
-    </div>
-    <div class="grid_navigation">
-      <areas-navigation />
-    </div>
-    <div class="grid_stash">
-      <stash-panel />
-    </div>
-    <div class="grid_areas">
-      <areas-panel />
-    </div>
+    
   </div>
 </template>
 
@@ -32,6 +39,7 @@ import stashPanel from '@/components/stashPanel'
 import pocketsPanel from '@/components/pocketsPanel'
 import areaHeader from '@/components/areaHeader'
 import topBar from '@/components/topBar'
+import eventPanel from '@/components/eventPanel'
 
 export default {
   components: {
@@ -40,7 +48,8 @@ export default {
     stashPanel,
     pocketsPanel,
     areaHeader,
-    topBar
+    topBar,
+    eventPanel
   },
   data() {
     return {
@@ -78,6 +87,17 @@ export default {
   background-color: var(--base-color);
   color: var(--white-color);
 }
+
+.grid_header {
+  grid-area: main-header;
+  position: relative;  
+}
+
+.grid_header > div { 
+  display: flex;
+  height: 100%;
+}
+
 .grid_profile {
   grid-area: profile;
   background-color: var(--base-color);

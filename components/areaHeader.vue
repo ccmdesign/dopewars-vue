@@ -24,6 +24,7 @@
   .area-header {
     display: flex;
     height: 100%;
+    width: 100%;
     align-items: flex-end;
     background-size: cover;
     background-position: center bottom;

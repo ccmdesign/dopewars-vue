@@ -46,13 +46,22 @@
 
         // Rolls the Special Event chance
         var eventChance = Math.floor(Math.random() * 100);
-
         var priceMultiplier = 1;
-        var specialEvent = false;
+        var ev = false;
         
-        if (eventChance <= this.player.specialEventChance) {
+        this.$emit('special_event', false);
+          
+        this.$store.commit('specialEvent', {
+          asset: "",
+          name: "",
+          description: "",
+          variation: ""
+        });
+
+
+        if (eventChance <= this.player.specialEvent.chance) {
           var eventGenerator = Math.floor(Math.random() * this.specialEvents.length);
-          specialEvent = this.specialEvents[eventGenerator];
+          ev = this.specialEvents[eventGenerator];
         }
 
         for (var i = 0; i < this.items.length; i++) {
@@ -61,9 +70,18 @@
           var x = {};
           x.name = this.items[i].name;
 
-          if (specialEvent.asset && this.items[i].name == specialEvent.asset) {
-            priceMultiplier = specialEvent.variation;
-            alert(specialEvent.name + '\n' + specialEvent.description);
+          if (ev.asset && this.items[i].name == ev.asset) {
+            priceMultiplier = ev.variation;
+            
+            this.$emit('special_event', ev.name);
+            // alert(ev.name)
+            
+            this.$store.commit('specialEvent', {
+              asset: ev.asset,
+              name: ev.name,
+              description: ev.description,
+              variation: ev.variation
+            });
           } 
           x.price = Math.floor((Math.random() * (max - min) + min) * priceMultiplier + 1);
           x.priceMin = this.items[i].priceMin;
@@ -77,6 +95,7 @@
           name: current.name,
           items: current.items
         });
+
       },
       ...mapMutations({
       })

@@ -2,9 +2,9 @@
   <aside class="base-panel">
     <table>
       <tr>
-        <td>Items</td>
-        <td class="text-align:right w200">Quantity</td>
-        <td class="text-align:right"></td>
+        <th>Items</th>
+        <th class="text-align:right w200">Quantity</th>
+        <th class="text-align:right"></th>
       </tr>
       <tr v-for="(item, index) in player.stash" :key="item.name">
         <td class="all">{{item.name}}</td>

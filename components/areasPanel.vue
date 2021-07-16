@@ -2,12 +2,14 @@
   <div class="base-panel">
     <table>
       <tr>
-        <td>Items</td>
-        <td class="text-align:right">Price</td>
-        <td class="text-align:right">Quantity</td>
+        <th>Items</th>
+        <!-- <th class="text-align:right">Min/Max</th> -->
+        <th class="text-align:right">Price</th>
+        <th class="text-align:right">Quantity</th>
       </tr>
-      <tr v-for="(item, index) in player.currentArea.items" :key="item.name">
+      <tr v-for="(item, index) in player.currentArea.items" :key="item.name" :data-highlight="highlight">
         <td class="all">{{item.name}}</td>
+        <!-- <td class="text-align:right">{{item.priceMin}} - {{item.priceMax}}</td> -->
         <td class="text-align:right">{{item.price}}</td>
         <td>
           <div class="trade-button" data-inverted >
@@ -27,7 +29,8 @@
   export default {
     data() {
       return {
-        askList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        askList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        // highlight: false
       }
     },
     computed: {
@@ -50,7 +53,6 @@
         });
         n = 0;
       },
-
       ...mapMutations({
         buyAsset: 'buyAsset',
       })
