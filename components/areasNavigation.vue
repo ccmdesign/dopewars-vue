@@ -51,15 +51,7 @@
         
         this.$emit('special_event', false);
           
-        this.$store.commit('specialEvent', {
-          asset: "",
-          name: "",
-          description: "",
-          variation: ""
-        });
-
-
-        if (eventChance <= this.player.specialEvent.chance) {
+        if (eventChance <= this.player.specialEventChance) {
           var eventGenerator = Math.floor(Math.random() * this.specialEvents.length);
           ev = this.specialEvents[eventGenerator];
         }
@@ -69,19 +61,17 @@
           var max = this.items[i].priceMax;
           var x = {};
           x.name = this.items[i].name;
+          x.specialEvent = false;
 
           if (ev.asset && this.items[i].name == ev.asset) {
             priceMultiplier = ev.variation;
+            x.specialEvent = {};
+            x.specialEvent.name = ev.name;
+            x.specialEvent.description = ev.description;
+            x.specialEvent.asset = ev.asset;
+            x.specialEvent.variation = ev.variation;
             
-            this.$emit('special_event', ev.name);
-            // alert(ev.name)
-            
-            this.$store.commit('specialEvent', {
-              asset: ev.asset,
-              name: ev.name,
-              description: ev.description,
-              variation: ev.variation
-            });
+            this.$emit('special_event', ev);
           } 
           x.price = Math.floor((Math.random() * (max - min) + min) * priceMultiplier + 1);
           x.priceMin = this.items[i].priceMin;

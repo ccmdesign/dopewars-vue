@@ -11,20 +11,13 @@ export const state = () => ({
       "interest": 1.02,
       "currentDay": 0,
       "maxDays": 30,
-      "specialEvent": {
-        "chance": 20,
-        "event": { 
-          "name": "",
-          "description": "",
-          "asset": "",
-          "variation": ""
-        }
-      },
+      "specialEventChance": 50,
       "pockets": {
         "capacity": 200,
         "used": 0,
       },
       "currentArea": {
+        'image': false,
         'name': 'Detroit',
         'items': [
           
@@ -252,13 +245,5 @@ export const mutations = {
         }
       } 
     }
-  },
-
-  specialEvent(state, payload) {
-    let currentEvent = state.player.specialEvent.event;
-    currentEvent.asset = payload.asset;
-    currentEvent.name = payload.name;
-    currentEvent.description = payload.description;
-    currentEvent.variation = payload.variation;
   }
 }
