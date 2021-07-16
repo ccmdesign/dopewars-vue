@@ -1,24 +1,28 @@
 <template>
   <aside class="base-panel">
     <table>
-      <tr>
-        <th>Items</th>
-        <th class="text-align:right w200">Quantity</th>
-        <th class="text-align:right"></th>
-      </tr>
-      <tr v-for="(item, index) in player.stash" :key="item.name">
-        <td class="all">{{item.name}}</td>
-        <td class="text-align:right">{{item.quantity}}</td>
-        <td>
-          <div class="trade-button">
-            <input type="text" v-model=askList[index] />
-            <input type="submit" @click="sellItem(item.name, player.currentArea.items[index].price, askList[index])" value="Sell" />
-          </div>
-        </td>
-        <td>
-          
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Items</th>
+          <th class="text-align:right w200">Quantity</th>
+          <th class="text-align:right"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in player.stash" :key="item.name">
+          <td class="all">{{item.name}}</td>
+          <td class="text-align:right">{{item.quantity}}</td>
+          <td>
+            <div class="trade-button">
+              <input type="text" v-model=askList[index] />
+              <input type="submit" @click="sellItem(item.name, player.currentArea.items[index].price, askList[index])" value="Sell" />
+            </div>
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+      </tbody>
     </table>
   </aside>
 </template>

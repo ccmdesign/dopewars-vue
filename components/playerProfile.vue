@@ -2,6 +2,7 @@
   <div class="base-panel">
     <h2>Money <span>{{player.wallet}}</span></h2>
     <table>
+      <tbody>
       <tr>
         <td>Loan</td>
         <td class="text-align:right all">{{player.loan}}</td>
@@ -12,6 +13,7 @@
           </div>
         </td>
       </tr>
+      
       <tr>
         <td>Bank</td>
         <td class="text-align:right all">{{player.bank}}</td>
@@ -26,6 +28,7 @@
       </tr>
       <tr>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>
