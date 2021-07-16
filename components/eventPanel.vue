@@ -1,8 +1,7 @@
 <template>
-  <div class="event-notification">
-    <div v-if="player.specialEvent.event.name" class="center">
-      <h1>{{ player.specialEvent.event.name }}</h1>
-      <p>{{ player.specialEvent.event.description }}</p>
+  <div v-if="notification" class="event-notification">
+    <div class="center">
+      <h2><strong>{{ notification.name }}</strong> | {{ notification.description }}</h2>
     </div>
   </div>
 </template>
@@ -16,9 +15,28 @@
         visible: true
       }
     },
+    methods: {
+      
+    },
     computed: {
       player() {
         return this.$store.state.player
+      },
+      
+      notification() {
+        const items = this.player.currentArea.items;
+        let x = false;
+
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].specialEvent) {
+            x = {};
+            x.asset = items[i].specialEvent.asset;
+            x.name = items[i].specialEvent.name;
+            x.description = items[i].specialEvent.description;
+            x.variation = items[i].specialEvent.variation;
+            return x;
+          }
+        }
       }
     }
   }
@@ -39,6 +57,9 @@
     > div { padding: var(--s1); }
   }
 
-  h1 { font-size: 1.5rem; }
+  h2 { 
+    font-size: 1.5rem; 
+    font-weight: normal;
+  }
   
 </style>
