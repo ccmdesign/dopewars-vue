@@ -41,16 +41,16 @@
   }
 
   .area-header[data-image="Detroit"] {
-    background-image: url('~assets/images/doug-zuba-6Yp99zMrsAI-unsplash.jpg');
+    background-image: url('~assets/images/annie-spratt-kr_88BakygA-unsplash.jpg');
   }
   .area-header[data-image="Chicago"] {
-    background-image: url('~assets/images/sawyer-bengtson-tnv84LOjes4-unsplash.jpg');
+    background-image: url('~assets/images/ashley-winkler-53f1vbOG7y8-unsplash.jpg');
   }
   .area-header[data-image="Seattle"] {
-    background-image: url('~assets/images/zhifei-zhou-QEob0Fp4rdg-unsplash.jpg');
+    background-image: url('~assets/images/melissa-askew-7YVJFSxTF0A-unsplash.jpg');
   }
   .area-header[data-image="NYC"] {
-    background-image: url('~assets/images/oliver-niblett-wh-7GeXxItI-unsplash.jpg');
+    background-image: url('~assets/images/somi-jaiswal-6DsMsaoFmqY-unsplash.jpg');
   }
 
 </style>
