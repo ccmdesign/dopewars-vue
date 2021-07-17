@@ -11,7 +11,7 @@ export const state = () => ({
       "interest": 1.02,
       "currentDay": 0,
       "maxDays": 30,
-      "specialEventChance": 50,
+      "specialEventChance": 20,
       "pockets": {
         "capacity": 200,
         "used": 0,
@@ -160,7 +160,15 @@ export const state = () => ({
 export const mutations = {
   changeArea(state, payload) {
     if (state.player.currentDay >= state.player.maxDays) {
-      alert("Game Over")
+      var answer = window.confirm("Game Over \n Play again?");
+      if (answer) {
+        this.$router.go()
+      }
+      else {
+        window.location.href = '/';   
+      }
+      
+
     }
 
     state.player.currentDay ++;
