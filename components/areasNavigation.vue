@@ -109,7 +109,7 @@
   }
 
   .nav-button:hover {
-    border-bottom: 4px solid var(--accent-color);
+    border-bottom: 4px solid hsla(var(--accent-hsl), .4);
   }
 
 
@@ -119,6 +119,11 @@
   }
 
   label {
+  }
+
+  input:checked + label {
+    color: var(--accent-color);
+    border-bottom: 4px solid var(--accent-color) !important;
   }
 
   input {
